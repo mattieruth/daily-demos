@@ -1,11 +1,12 @@
-name: Elastic Beanstalk Deployment
+name: Elastic Beanstalk Deployment (test)
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [labeled, synchronize]
 
 jobs:
   build-and-deploy:
+    if: contains(github.event.pull_request.labels.*.name, 'staging')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -21,7 +22,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: daily-demos
-          environment_name: daily-demos-env
+          environment_name: daily-demos-test
           version_label: ${{ github.sha }}
           version_description: ${{ steps.getcommit.outputs.description }}
           region: us-east-1
@@ -31,5 +32,5 @@ jobs:
         uses: daily-co/create-tag-action@v1.0
         with:
           app-name: daily-demos
-          environment: prod
+          environment: test
           github-token: ${{ secrets.GITHUB_TOKEN }}
