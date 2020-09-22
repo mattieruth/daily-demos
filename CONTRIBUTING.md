@@ -54,7 +54,7 @@ npm run dev # points to localhost:3000 (prerequisite: "Running the entire demo p
 ```
 
 ### Read our code of conduct 
-We use the [Contributor Covenant](https://www.contributor-covenant.org/) for our Code of Conduct. Before contributing, [please read it](CODE-OF-CONDUCT.md). 
+We use the [Contributor Covenant](https://www.contributor-covenant.org/) for our Code of Conduct. Before contributing, [please read it](CODE_OF_CONDUCT.md). 
 
 ## How to contribute 
 ### Open or claim an issue 
