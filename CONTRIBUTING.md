@@ -62,7 +62,6 @@ We use the [Contributor Covenant](https://www.contributor-covenant.org/) for our
 Today we work off two main issue templates: **bug reports** and **demo/feature requests**. 
 
 **Bug reports** 
-
 Before creating a new bug report, please do two things: 
 
 1) If you want to report a bug you experienced while on a Daily call, try out these [troubleshooting tips](https://help.daily.co/en/articles/2303117-top-troubleshooting-tips) to see if that takes care of the bug. 
@@ -77,14 +76,13 @@ If you've done those two things and need to tell us about a newly spotted bug, w
 * Any additional context that you think could help us work through this 
 
 **Demo/feature requests** 
-
 We're always happy to hear about new ways you'd like to use Daily. If you'd like a demo that we don't have yet, we'll ask you to let us know: 
 * If the demo will help you solve a particular problem 
 * Alternative solutions you've considered 
 * Any additional context that might help us understand this ask 
 
 #### Claim an issue 
-All issues labeled `good-first-issue` are up for grabs. Feel free to assign yourself! 
+All issues labeled `good-first-issue` are up for grabs. If you'd like to tackle an existing issue, feel free to assign yourself, and please leave a comment letting everyone know that you are on it. 
 
 ### Open a pull request 
 * If it's been a minute or if you haven't yet cloned, forked, or branched a repository, GitHub has some [docs to help](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests).
