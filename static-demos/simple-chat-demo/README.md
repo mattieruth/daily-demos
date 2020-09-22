@@ -1,4 +1,4 @@
-# Daily.co simple chat demo 
+# Daily simple chat demo 
 This demo mirrors Daily.co's [css-grid-demo](), modified to add a basic chat user interface. 
 
 The chat makes use of the `sendAppMessage()` instance method and the corresponding `app-message` event listener. 
