@@ -1,6 +1,6 @@
 ---
 name: Demo request
-about: 'Tell us if you''re looking for a demo we don''t have yet. '
+about: 'Tell us if there's something you''d like to add or change to a new demo, or if there's a new demo you''d like us to add. '
 title: "[DEMO-REQUEST]"
 labels: demo
 assignees: kimberleejohnson
