@@ -8,17 +8,50 @@
      that creates rooms within your own domain. -->
     <script src="../shared-assets/create-demo-room.js"></script>
     <style>
-      body {
-        background-image: url('https://j.gifs.com/mwryBn.gif');
+      /* body {
+        background-image: url('wedding_background.png');
         background-size: cover;
+      } */
+
+      .arch {
+        position: fixed;
+        height: 1000;
+        max-height: 100%;
+        pointer-events: none;
+      }
+      #topper {
+        width: 100%;
+        top: 0;
+        z-index: 1;
+      }
+      #rightpipe {
+        top: 900;
+        right: 0;
+        z-index: 1;
+      }
+      #leftpipe {
+        top: 900;
+        left: 0;
+        z-index: 1;
+      }
+      #upleft {
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+      #upright {
+        top: 0;
+        right: 0;
+        z-index: 2;
       }
 
-      #bday {
+      #giphy {
         position: absolute;
         float: right;
         width: 10%;
         top: 10px;
         right: 5px;
+        z-index: 3;
       }
     </style>
   </head>
@@ -33,7 +66,7 @@
           // TODO: replace the following with you giphy api key
           // This is what you get with late night hacking / throw it together in 30 minutes.
           const token = '<INSERT_GIPHY_API_KEY_HERE>';
-          const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=birthday&rating=pg`;
+          const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=wedding&rating=pg`;
           let response = await fetch(giphyEndpoint);
           window.giphs = await response.json();
           return room;
@@ -53,7 +86,7 @@
             let url =
               window.giphs.data[Math.floor(Math.random() * 50)].images.original
                 .url;
-            document.getElementById('bday').src = url;
+            document.getElementById('giphy').src = url;
           } catch (e) {
             console.error(e);
           }
@@ -63,7 +96,7 @@
         // this:
         //
         // TODO: Update with a room of your chosing
-        room = { url: 'https://your-domain.daily.co/hello' };
+        room = { url: 'https://ruthless.staging.daily.co/the_chapel' };
         //
         // room = await createMtgRoom();
 
@@ -74,15 +107,16 @@
 
         callFrame = window.DailyIframe.createFrame({
           iframeStyle: {
-            // position: 'fixed',
+            position: 'relative',
             border: 0,
-            display: 'block',
+            top: '17%',
+            left: '10%',
+            width: '80%',
+            height: '83%',
+            zIndex: 0,
+            // display: 'block',
             // margin
-            margin: 'auto',
-            // top: 0,
-            // left: 0,
-            width: '85%',
-            height: '100%',
+            // margin: 'auto',
           },
         });
         // callFrame.join({ url: 'https://your-team.daily.co/hello' });
@@ -141,6 +175,11 @@
         );
       }
     </script>
-    <img src="" id="bday" />
+    <img src="wedding_top.png" id="topper" class="arch" />
+    <img src="wedding_left.png" id="leftpipe" class="arch" />
+    <img src="wedding_right.png" id="rightpipe" class="arch" />
+    <img src="wedding_upper_left.png" id="upleft" class="arch" />
+    <img src="wedding_upper_right.png" id="upright" class="arch" />
+    <img src="" id="giphy" />
   </body>
 </html>
