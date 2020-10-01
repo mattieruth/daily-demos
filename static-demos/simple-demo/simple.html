@@ -8,29 +8,30 @@
      that creates rooms within your own domain. -->
     <script src="../shared-assets/create-demo-room.js"></script>
     <style>
-      /* body {
-        background-image: url('wedding_background.png');
+      body {
+        background-image: url('wedding_background.jpg');
         background-size: cover;
-      } */
+      }
 
       .arch {
         position: fixed;
-        height: 1000;
+        height: 700;
         max-height: 100%;
         pointer-events: none;
       }
       #topper {
-        width: 100%;
+        width: 80%;
         top: 0;
+        left: 10%;
         z-index: 1;
       }
       #rightpipe {
-        top: 900;
+        top: 680;
         right: 0;
         z-index: 1;
       }
       #leftpipe {
-        top: 900;
+        top: 680;
         left: 0;
         z-index: 1;
       }
@@ -46,12 +47,11 @@
       }
 
       #giphy {
-        position: absolute;
-        float: right;
+        position: fixed;
         width: 10%;
-        top: 10px;
-        right: 5px;
-        z-index: 3;
+        top: 5px;
+        right: 15%;
+        z-index: 1;
       }
     </style>
   </head>
@@ -96,7 +96,8 @@
         // this:
         //
         // TODO: Update with a room of your chosing
-        room = { url: 'https://ruthless.staging.daily.co/the_chapel' };
+        // room = { url: 'https://ruthless.staging.daily.co/the_chapel' };
+        room = { url: 'https://playground.staging.daily.co/water-cooler' };
         //
         // room = await createMtgRoom();
 
