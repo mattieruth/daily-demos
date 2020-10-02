@@ -9,7 +9,8 @@
     <script src="../shared-assets/create-demo-room.js"></script>
     <style>
       body {
-        background-image: url('wedding_background.jpg');
+        background-image: url('https://d3i6fh83elv35t.cloudfront.net/newshour/app/uploads/2016/12/GettyImages-142061241-1024x683.jpg');
+        background-position-y: -188px;
         background-size: cover;
       }
 
@@ -46,27 +47,38 @@
         z-index: 2;
       }
 
-      #giphy {
+      #giphy-wrap {
         position: fixed;
         width: 10%;
+        height: 15%;
         top: 5px;
         right: 15%;
         z-index: 1;
+        background-color: #333;
+        color: antiquewhite;
+        padding: 5px;
+        flex-direction: column;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      #giphy {
+        max-width: 100%;
+        max-height: 80%;
+      }
+      #giphy-wrap p {
+        margin: 5px;
       }
     </style>
   </head>
   <body onload="run()">
-    <!-- <p>Open your js console, then ...</p>
-
-    <p><button onclick="run()">Click here to start call</button></p> -->
-
     <script>
       async function getGiphy() {
         try {
           // TODO: replace the following with you giphy api key
           // This is what you get with late night hacking / throw it together in 30 minutes.
           const token = '<INSERT_GIPHY_API_KEY_HERE>';
-          const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=wedding&rating=pg`;
+          const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=marriage&rating=pg`;
           let response = await fetch(giphyEndpoint);
           window.giphs = await response.json();
           return room;
@@ -79,48 +91,53 @@
         console.log('video call event -->', e);
       }
 
+      function updateGif() {
+        try {
+          let url =
+            window.giphs.data[Math.floor(Math.random() * 50)].images.original
+              .url;
+          document.getElementById('giphy').src = url;
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
       async function run() {
         getGiphy();
+        setTimeout(() => {
+          updateGif();
+        }, 1000);
         setInterval(() => {
-          try {
-            let url =
-              window.giphs.data[Math.floor(Math.random() * 50)].images.original
-                .url;
-            document.getElementById('giphy').src = url;
-          } catch (e) {
-            console.error(e);
-          }
+          updateGif();
         }, 20 * 1000);
         // create a short-lived demo room. if you just want to
         // hard-code a meeting link for testing you could do something like
         // this:
         //
         // TODO: Update with a room of your chosing
-        // room = { url: 'https://ruthless.staging.daily.co/the_chapel' };
-        room = { url: 'https://playground.staging.daily.co/water-cooler' };
+        // room = { url: 'https://<your_domain>.daily.co/<your_room>' };
         //
-        // room = await createMtgRoom();
+        room = await createMtgRoom();
 
-        // create a video call iframe and add it to document.body
-        // defaults to floating window in the lower right-hand corner
-        //
-        // window.callFrame = window.DailyIframe.createFrame();
+        const queryString = window.location.search;
+        console.log(`querystring: ${queryString}`);
+        let name = '';
+        if (queryString.includes('bride')) {
+          console.log('set username!');
+          name = 'kimberlee';
+        }
 
         callFrame = window.DailyIframe.createFrame({
           iframeStyle: {
-            position: 'relative',
+            position: 'absolute',
             border: 0,
             top: '17%',
             left: '10%',
             width: '80%',
             height: '83%',
             zIndex: 0,
-            // display: 'block',
-            // margin
-            // margin: 'auto',
           },
         });
-        // callFrame.join({ url: 'https://your-team.daily.co/hello' });
 
         // install event handlers that just print out event information
         // to the console
@@ -151,6 +168,7 @@
         await callFrame.join({
           url: room.url,
           showLeaveButton: true,
+          userName: name,
         });
 
         function leave(e) {
@@ -176,11 +194,39 @@
         );
       }
     </script>
-    <img src="wedding_top.png" id="topper" class="arch" />
-    <img src="wedding_left.png" id="leftpipe" class="arch" />
-    <img src="wedding_right.png" id="rightpipe" class="arch" />
-    <img src="wedding_upper_left.png" id="upleft" class="arch" />
-    <img src="wedding_upper_right.png" id="upright" class="arch" />
-    <img src="" id="giphy" />
+    <img
+      src="https://raw.githubusercontent.com/mattieruth/daily-demos/git-n-hitched/static-demos/simple-demo/wedding_top.png "
+      id="topper"
+      class="arch"
+    />
+    <!-- <img src="wedding_top.png" id="topper" class="arch" /> -->
+    <img
+      src="https://raw.githubusercontent.com/mattieruth/daily-demos/git-n-hitched/static-demos/simple-demo/wedding_left.png "
+      id="leftpipe"
+      class="arch"
+    />
+    <!-- <img src="wedding_left.png" id="leftpipe" class="arch" /> -->
+    <img
+      src="https://raw.githubusercontent.com/mattieruth/daily-demos/git-n-hitched/static-demos/simple-demo/wedding_right.png "
+      id="rightpipe"
+      class="arch"
+    />
+    <!-- <img src="wedding_right.png" id="rightpipe" class="arch" /> -->
+    <img
+      src="https://raw.githubusercontent.com/mattieruth/daily-demos/git-n-hitched/static-demos/simple-demo/wedding_upper_left.png "
+      id="upleft"
+      class="arch"
+    />
+    <!-- <img src="wedding_upper_left.png" id="upleft" class="arch" /> -->
+    <img
+      src="https://raw.githubusercontent.com/mattieruth/daily-demos/git-n-hitched/static-demos/simple-demo/wedding_upper_right.png "
+      id="upright"
+      class="arch"
+    />
+    <!-- <img src="wedding_upper_right.png" id="upright" class="arch" /> -->
+    <div id="giphy-wrap">
+      <img src="" id="giphy" />
+      <p>#marriage</p>
+    </div>
   </body>
 </html>
